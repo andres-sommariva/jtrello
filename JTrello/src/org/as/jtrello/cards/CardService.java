@@ -1,0 +1,75 @@
+package org.as.jtrello.cards;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.as.jtrello.Config;
+import org.as.jtrello.TrelloApiBase;
+import org.as.jtrello.TrelloApiBaseException;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+public class CardService extends TrelloApiBase {
+
+	/**
+	 * @param config
+	 */
+	public CardService(Config config) {
+		super(config);
+	}
+	
+	/**
+	 * @param id Card id or shortlink.
+	 * @return Gets a card by id or shortlink.
+	 * @throws TrelloApiBaseException
+	 */
+	public Card get(String id) throws TrelloApiBaseException {
+		List<String> parts = new ArrayList<String>();
+		parts.add("cards");
+		parts.add(id);
+		
+		String json = this.getRequest(parts, null);
+		Gson gson = new Gson();
+		Card card = gson.fromJson(json, Card.class);
+		return card;
+	}
+	
+	/**
+	 * @param boardId 
+	 * @return Gets a card list by board.
+	 * @throws TrelloApiBaseException
+	 */
+	public List<Card> getByBoard(String boardId) throws TrelloApiBaseException{
+		List<String> parts = new ArrayList<String>();
+		parts.add("boards");
+		parts.add(boardId);
+		parts.add("cards");
+		
+		String json = this.getRequest(this.config.getApiBaseUrl(), parts, null);
+		Gson gson = new Gson();
+		Type collectionType = new TypeToken<List<Card>>(){}.getType();
+		List<Card> cards = gson.fromJson(json, collectionType);
+		return cards;
+	}
+	
+	/**
+	 * @param key Id or username. 'me' will respond as if you had supplied the username associated with the supplied token.
+	 * @return Gets a card list by member.
+	 * @throws TrelloApiBaseException
+	 */
+	public List<Card> getByUser(String key) throws TrelloApiBaseException{
+		List<String> parts = new ArrayList<String>();
+		parts.add("members");
+		parts.add(key);
+		parts.add("cards");
+		
+		String json = this.getRequest(this.config.getApiBaseUrl(), parts, null);
+		Gson gson = new Gson();
+		Type collectionType = new TypeToken<List<Card>>(){}.getType();
+		List<Card> cards = gson.fromJson(json, collectionType);
+		return cards;
+	}
+
+}
