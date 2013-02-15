@@ -1,4 +1,4 @@
-package org.as.jtrello;
+package org.as.jtrello.base;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
+import org.as.jtrello.Config;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;

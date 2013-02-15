@@ -1,15 +1,23 @@
 package org.as.jtrello;
 
+import org.as.jtrello.actions.ActionService;
 import org.as.jtrello.boards.BoardService;
 import org.as.jtrello.cards.CardService;
+import org.as.jtrello.checklists.ChecklistService;
+import org.as.jtrello.lists.ListService;
 import org.as.jtrello.members.MemberService;
+import org.as.jtrello.notifications.NotificationService;
 import org.as.jtrello.organizations.OrganizationService;
 
 public class JTrelloClient {
 	private MemberService members;
 	private OrganizationService organizations;
 	private BoardService boards;
+	private ListService lists;
 	private CardService cards;
+	private ChecklistService checklists;
+	private NotificationService notifications;
+	private ActionService actions;
 
 	/**
 	 * 
@@ -41,7 +49,11 @@ public class JTrelloClient {
 		this.members 		= new MemberService(config);
 		this.organizations 	= new OrganizationService(config);
 		this.boards 		= new BoardService(config);
+		this.lists			= new ListService(config);
 		this.cards			= new CardService(config);
+		this.checklists		= new ChecklistService(config);
+		this.notifications	= new NotificationService(config);
+		this.actions		= new ActionService(config);
 		
 	}
 	
@@ -54,7 +66,19 @@ public class JTrelloClient {
 	public BoardService getBoards() {
 		return this.boards;
 	}
+	public ListService getLists() {
+		return this.lists;
+	}
 	public CardService getCards() {
 		return this.cards;
+	}
+	public ChecklistService getChecklists() {
+		return this.checklists;
+	}
+	public NotificationService getNotifications() {
+		return this.notifications;
+	}
+	public ActionService getActions() {
+		return this.actions;
 	}
 }

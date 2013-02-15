@@ -1,10 +1,9 @@
 package org.as.jtrello.boards;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.as.jtrello.base.TrelloObject;
 
-public class Board {
+public class Board extends TrelloObject {
 
-	private String id;
 	private String name;
 	private String desc;
 	private boolean closed;
@@ -12,12 +11,6 @@ public class Board {
 	private String url;
 	//private Preferences prefs;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}
@@ -49,8 +42,4 @@ public class Board {
 		this.url = url;
 	}
 	
-	@Override
-	public String toString(){
-		return ReflectionToStringBuilder.reflectionToString(this);
-	}
 }

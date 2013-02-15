@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.as.jtrello.Config;
-import org.as.jtrello.TrelloApiBase;
-import org.as.jtrello.TrelloApiBaseException;
+import org.as.jtrello.base.TrelloApiBase;
+import org.as.jtrello.base.TrelloApiBaseException;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -72,6 +72,29 @@ public class MemberService extends TrelloApiBase {
 		List<String> parts = new ArrayList<String>();
 		parts.add("boards");
 		parts.add(boardId);
+		parts.add("members");
+		
+		// Request all member fields.
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("fields", "all");
+		
+		String json = this.getRequest(this.config.getApiBaseUrl(), parts, params);
+		Gson gson = new Gson();
+		Type collectionType = new TypeToken<List<Member>>(){}.getType();
+		List<Member> members = gson.fromJson(json, collectionType);
+		return members;
+	}
+	
+	/**
+	 * @param id Card id or shortlink.
+	 * @return Gets a member list by card.
+	 * <br/><b>Note: </b> This method seems to return a partial representation of the member.
+	 * @throws TrelloApiBaseException
+	 */
+	public List<Member> getByCard(String id) throws TrelloApiBaseException{
+		List<String> parts = new ArrayList<String>();
+		parts.add("cards");
+		parts.add(id);
 		parts.add("members");
 		
 		// Request all member fields.

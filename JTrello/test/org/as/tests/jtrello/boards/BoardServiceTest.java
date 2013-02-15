@@ -7,15 +7,16 @@ import java.util.List;
 
 import org.as.jtrello.boards.Board;
 import org.as.tests.jtrello.GenericServiceTest;
-import org.as.tests.jtrello.TestValues;
 import org.junit.Test;
 
 public class BoardServiceTest extends GenericServiceTest {
 
+	//TODO Check returned object values
+	
 	@Test
 	public void testGetPublic() {
 		try {
-			Board board = client.getBoards().get(TestValues.TRELLO_BOARD_PUBLIC);
+			Board board = client.getBoards().get(props.getProperty("TRELLO_BOARD_PUBLIC"));
 			System.out.println("DEBUG board=" + board.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -26,7 +27,7 @@ public class BoardServiceTest extends GenericServiceTest {
 	@Test
 	public void testGetPrivate() {
 		try {
-			Board board = client.getBoards().get(TestValues.TRELLO_BOARD_PRIVATE);
+			Board board = client.getBoards().get(props.getProperty("TRELLO_BOARD_PRIVATE"));
 			System.out.println("DEBUG board=" + board.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,7 +39,7 @@ public class BoardServiceTest extends GenericServiceTest {
 	public void testGetByUser() {
 		Board board;
 		try {
-			List<Board> boards = client.getBoards().getByUser(TestValues.TRELLO_MEMBER);
+			List<Board> boards = client.getBoards().getByUser(props.getProperty("TRELLO_MEMBER"));
 			Iterator<Board> iterator = boards.iterator();
 			while (iterator.hasNext()) {
 				board = iterator.next();
@@ -54,7 +55,7 @@ public class BoardServiceTest extends GenericServiceTest {
 	public void testGetByOrganization() {
 		Board board;
 		try {
-			List<Board> boards = client.getBoards().getByOrganization(TestValues.TRELLO_ORGANIZATION);
+			List<Board> boards = client.getBoards().getByOrganization(props.getProperty("TRELLO_ORGANIZATION"));
 			Iterator<Board> iterator = boards.iterator();
 			while (iterator.hasNext()) {
 				board = iterator.next();

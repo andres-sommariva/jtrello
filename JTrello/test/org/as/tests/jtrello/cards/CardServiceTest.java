@@ -7,22 +7,23 @@ import java.util.List;
 
 import org.as.jtrello.cards.Card;
 import org.as.tests.jtrello.GenericServiceTest;
-import org.as.tests.jtrello.TestValues;
 import org.junit.Test;
 
 public class CardServiceTest extends GenericServiceTest {
 
+	//TODO Check returned object values
+	
 	@Test
 	public void testGet() {
 		try {
-			Card card = client.getCards().get(TestValues.TRELLO_CARD1);
+			Card card = client.getCards().get(props.getProperty("TRELLO_CARD1"));
 			System.out.println("DEBUG card=" + card.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();
 		}
 		try {
-			Card card = client.getCards().get(TestValues.TRELLO_CARD2);
+			Card card = client.getCards().get(props.getProperty("TRELLO_CARD2"));
 			System.out.println("DEBUG card=" + card.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -34,7 +35,7 @@ public class CardServiceTest extends GenericServiceTest {
 	public void testGetByBoard() {
 		Card card;
 		try {
-			List<Card> cards = client.getCards().getByBoard(TestValues.TRELLO_BOARD_PRIVATE);
+			List<Card> cards = client.getCards().getByBoard(props.getProperty("TRELLO_BOARD_PRIVATE"));
 			Iterator<Card> iterator = cards.iterator();
 			while (iterator.hasNext()) {
 				card = iterator.next();
@@ -50,7 +51,7 @@ public class CardServiceTest extends GenericServiceTest {
 	public void testGetByUser() {
 		Card card;
 		try {
-			List<Card> cards = client.getCards().getByUser(TestValues.TRELLO_MEMBER);
+			List<Card> cards = client.getCards().getByUser(props.getProperty("TRELLO_MEMBER"));
 			Iterator<Card> iterator = cards.iterator();
 			while (iterator.hasNext()) {
 				card = iterator.next();

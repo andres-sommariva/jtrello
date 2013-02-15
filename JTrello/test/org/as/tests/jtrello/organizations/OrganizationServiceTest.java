@@ -7,15 +7,16 @@ import java.util.List;
 
 import org.as.jtrello.organizations.Organization;
 import org.as.tests.jtrello.GenericServiceTest;
-import org.as.tests.jtrello.TestValues;
 import org.junit.Test;
 
 public class OrganizationServiceTest extends GenericServiceTest {
 
+	//TODO Check returned object values
+	
 	@Test
 	public void testGet() {
 		try {
-			Organization organization = OrganizationServiceTest.client.getOrganizations().get(TestValues.TRELLO_ORGANIZATION);
+			Organization organization = OrganizationServiceTest.client.getOrganizations().get(props.getProperty("TRELLO_ORGANIZATION"));
 			System.out.println("DEBUG organization=" + organization.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -27,7 +28,7 @@ public class OrganizationServiceTest extends GenericServiceTest {
 	public void testGetByUser() {
 		Organization organization;
 		try {
-			List<Organization> organizations = OrganizationServiceTest.client.getOrganizations().getByUser(TestValues.TRELLO_MEMBER);
+			List<Organization> organizations = OrganizationServiceTest.client.getOrganizations().getByUser(props.getProperty("TRELLO_MEMBER"));
 			Iterator<Organization> iterator = organizations.iterator();
 			while (iterator.hasNext()) {
 				organization = iterator.next();

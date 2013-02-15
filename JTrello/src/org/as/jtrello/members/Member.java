@@ -2,11 +2,10 @@ package org.as.jtrello.members;
 
 import java.util.List;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.as.jtrello.base.TrelloObject;
 
-public class Member {
+public class Member extends TrelloObject {
 
-	private String id;
 	private String username;
 	private String fullName;
 	private String initials;
@@ -14,13 +13,8 @@ public class Member {
 	private String bio;
 	private String url;
 	private List<String> idBoards;
+	private List<String> idOrganizations;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getUsername() {
 		return username;
 	}
@@ -63,10 +57,11 @@ public class Member {
 	public void setIdBoards(List<String> idBoards) {
 		this.idBoards = idBoards;
 	}
-	
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.reflectionToString(this);
+	public List<String> getIdOrganizations() {
+		return idOrganizations;
 	}
-
+	public void setIdOrganizations(List<String> idOrganizations) {
+		this.idOrganizations = idOrganizations;
+	}
+	
 }

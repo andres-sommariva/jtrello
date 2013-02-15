@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.as.jtrello.Config;
-import org.as.jtrello.TrelloApiBase;
-import org.as.jtrello.TrelloApiBaseException;
+import org.as.jtrello.base.TrelloApiBase;
+import org.as.jtrello.base.TrelloApiBaseException;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

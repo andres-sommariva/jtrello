@@ -3,10 +3,11 @@ package org.as.jtrello.cards;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.as.jtrello.base.TrelloObject;
 
-public class Card {
+public class Card extends TrelloObject {
 
-	private String id;
+	private String idShort;
 	private String name;
 	private String desc;
 	private String idBoard;
@@ -34,14 +35,13 @@ public class Card {
 			return ReflectionToStringBuilder.reflectionToString(this);
 		}
 	}
-	
 	private List<Label> labels;
 
-	public String getId() {
-		return id;
+	public String getIdShort() {
+		return idShort;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setIdShort(String idShort) {
+		this.idShort = idShort;
 	}
 	public String getName() {
 		return name;
@@ -86,9 +86,4 @@ public class Card {
 		this.due = due;
 	}
 	
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.reflectionToString(this);
-	}
-
 }

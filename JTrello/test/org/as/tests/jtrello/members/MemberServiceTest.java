@@ -7,15 +7,16 @@ import java.util.List;
 
 import org.as.jtrello.members.Member;
 import org.as.tests.jtrello.GenericServiceTest;
-import org.as.tests.jtrello.TestValues;
 import org.junit.Test;
 
 public class MemberServiceTest extends GenericServiceTest {
 	
+	//TODO Check returned object values
+	
 	@Test
 	public void testGet() {
 		try {
-			Member member = client.getMembers().get(TestValues.TRELLO_MEMBER);
+			Member member = client.getMembers().get(props.getProperty("TRELLO_MEMBER"));
 			System.out.println("DEBUG member=" + member.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,7 +39,7 @@ public class MemberServiceTest extends GenericServiceTest {
 	public void testGetByOrganization() {
 		Member member;
 		try {
-			List<Member> members = client.getMembers().getByOrganization("devforuser");
+			List<Member> members = client.getMembers().getByOrganization(props.getProperty("TRELLO_ORGANIZATION"));
 			Iterator<Member> iterator = members.iterator();
 			while (iterator.hasNext()) {
 				member = iterator.next();
@@ -54,7 +55,23 @@ public class MemberServiceTest extends GenericServiceTest {
 	public void testGetByBoard() {
 		Member member;
 		try {
-			List<Member> members = client.getMembers().getByBoard("5112f4b6c4cde7265f011fc9");//JTrello
+			List<Member> members = client.getMembers().getByBoard(props.getProperty("TRELLO_BOARD_PRIVATE"));//JTrello
+			Iterator<Member> iterator = members.iterator();
+			while (iterator.hasNext()) {
+				member = iterator.next();
+				System.out.println("DEBUG member=" + member.toString());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+	
+	@Test
+	public void testGetByCard() {
+		Member member;
+		try {
+			List<Member> members = client.getMembers().getByCard(props.getProperty("TRELLO_CARD1"));
 			Iterator<Member> iterator = members.iterator();
 			while (iterator.hasNext()) {
 				member = iterator.next();

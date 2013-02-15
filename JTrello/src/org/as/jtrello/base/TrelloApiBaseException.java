@@ -1,4 +1,4 @@
-package org.as.jtrello;
+package org.as.jtrello.base;
 
 public class TrelloApiBaseException extends Exception {
 

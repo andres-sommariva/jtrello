@@ -2,23 +2,16 @@ package org.as.jtrello.organizations;
 
 import java.util.List;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.as.jtrello.base.TrelloObject;
 
-public class Organization {
+public class Organization extends TrelloObject {
 
-	private String id;
 	private String name;
 	private String displayName;
 	private String desc;
 	private String url;
 	private List<String> idBoards;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}
@@ -50,8 +43,4 @@ public class Organization {
 		this.idBoards = idBoards;
 	}
 	
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.reflectionToString(this);
-	}
 }
