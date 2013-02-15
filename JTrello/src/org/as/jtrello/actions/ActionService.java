@@ -8,7 +8,6 @@ import org.as.jtrello.Config;
 import org.as.jtrello.base.TrelloApiBase;
 import org.as.jtrello.base.TrelloApiBaseException;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class ActionService extends TrelloApiBase {
@@ -30,10 +29,8 @@ public class ActionService extends TrelloApiBase {
 		parts.add("actions");
 		parts.add(idAction);
 		
-		String json = this.getRequest(parts, null);
-		Gson gson = new Gson();
-		Action action = gson.fromJson(json, Action.class);
-		return action;
+		Type typeOfT = new TypeToken<Action>(){}.getType();
+		return this.doGet(parts, null, typeOfT);
 	}
 	
 	/**
@@ -47,11 +44,8 @@ public class ActionService extends TrelloApiBase {
 		parts.add(idBoard);
 		parts.add("actions");
 		
-		String json = this.getRequest(parts, null);
-		Gson gson = new Gson();
-		Type collectionType = new TypeToken<List<Action>>(){}.getType();
-		List<Action> actions = gson.fromJson(json, collectionType);
-		return actions;
+		Type typeOfT = new TypeToken<List<Action>>(){}.getType();
+		return this.doGet(parts, null, typeOfT);
 	}
 	
 	/**
@@ -65,11 +59,8 @@ public class ActionService extends TrelloApiBase {
 		parts.add(id);
 		parts.add("actions");
 		
-		String json = this.getRequest(parts, null);
-		Gson gson = new Gson();
-		Type collectionType = new TypeToken<List<Action>>(){}.getType();
-		List<Action> actions = gson.fromJson(json, collectionType);
-		return actions;
+		Type typeOfT = new TypeToken<List<Action>>(){}.getType();
+		return this.doGet(parts, null, typeOfT);
 	}
 	
 	/**
@@ -83,11 +74,8 @@ public class ActionService extends TrelloApiBase {
 		parts.add(idList);
 		parts.add("actions");
 		
-		String json = this.getRequest(parts, null);
-		Gson gson = new Gson();
-		Type collectionType = new TypeToken<List<Action>>(){}.getType();
-		List<Action> actions = gson.fromJson(json, collectionType);
-		return actions;
+		Type typeOfT = new TypeToken<List<Action>>(){}.getType();
+		return this.doGet(parts, null, typeOfT);
 	}
 	
 	/**
@@ -101,11 +89,8 @@ public class ActionService extends TrelloApiBase {
 		parts.add(key);
 		parts.add("actions");
 		
-		String json = this.getRequest(parts, null);
-		Gson gson = new Gson();
-		Type collectionType = new TypeToken<List<Action>>(){}.getType();
-		List<Action> actions = gson.fromJson(json, collectionType);
-		return actions;
+		Type typeOfT = new TypeToken<List<Action>>(){}.getType();
+		return this.doGet(parts, null, typeOfT);
 	}
 	
 	/**
@@ -119,11 +104,8 @@ public class ActionService extends TrelloApiBase {
 		parts.add(key);
 		parts.add("actions");
 		
-		String json = this.getRequest(parts, null);
-		Gson gson = new Gson();
-		Type collectionType = new TypeToken<List<Action>>(){}.getType();
-		List<Action> actions = gson.fromJson(json, collectionType);
-		return actions;
+		Type typeOfT = new TypeToken<List<Action>>(){}.getType();
+		return this.doGet(parts, null, typeOfT);
 	}
 
 }

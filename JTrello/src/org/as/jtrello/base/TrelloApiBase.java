@@ -1,5 +1,6 @@
 package org.as.jtrello.base;
 
+import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.MessageFormat;
@@ -11,6 +12,7 @@ import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.as.jtrello.Config;
 
+import com.google.gson.Gson;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -33,23 +35,26 @@ public class TrelloApiBase {
 	
 	/**
 	 * @param parts URL segments.
-	 * @param params params URL query string parameters.
-	 * @return Execute resource request (GET) and returns its output in JSON format.
+	 * @param params URL query string parameters.
+	 * @param typeOfT The type of the object to be returned. This is needed in order to tell Gson how to deserialize the JSON response.
+	 * @return Execute resource request (GET) and returns an object of typeOfT type.
 	 * @throws TrelloApiBaseException If http status code is not '200'.
 	 */
-	public String getRequest(List<String> parts, Map<String, String> params) throws TrelloApiBaseException {
-		return getRequest(this.config.getApiBaseUrl(), parts, params);
+	public <T> T doGet(List<String> parts, Map<String, String> params, Type typeOfT) throws TrelloApiBaseException {
+		String json = this.getRequest(parts, params);
+		Gson gson = new Gson();
+		T obj = gson.fromJson(json, typeOfT);
+		return obj;
 	}
 
 	/**
-	 * @param path API base URL.
 	 * @param parts URL segments.
 	 * @param params URL query string parameters.
 	 * @return Execute resource request (GET) and returns its output in JSON format.
 	 * @throws TrelloApiBaseException If http status code is not '200'.
 	 */
-	public String getRequest(String path, List<String> parts, Map<String, String> params) throws TrelloApiBaseException {
-		URI uri = buildUri(path, parts, params);
+	private String getRequest(List<String> parts, Map<String, String> params) throws TrelloApiBaseException {
+		URI uri = buildUri(this.config.getApiBaseUrl(), parts, params);
 
 		Client client = Client.create();
 

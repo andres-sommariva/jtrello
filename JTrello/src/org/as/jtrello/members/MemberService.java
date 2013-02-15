@@ -10,7 +10,6 @@ import org.as.jtrello.Config;
 import org.as.jtrello.base.TrelloApiBase;
 import org.as.jtrello.base.TrelloApiBaseException;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class MemberService extends TrelloApiBase {
@@ -33,10 +32,8 @@ public class MemberService extends TrelloApiBase {
 		parts.add("members");
 		parts.add(key);
 		
-		String json = this.getRequest(this.config.getApiBaseUrl(), parts, null);
-		Gson gson = new Gson();
-		Member member = gson.fromJson(json, Member.class);
-		return member;
+		Type typeOfT = new TypeToken<Member>(){}.getType();
+		return this.doGet(parts, null, typeOfT);
 	}
 	
 	/**
@@ -55,11 +52,8 @@ public class MemberService extends TrelloApiBase {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("fields", "all");
 		
-		String json = this.getRequest(this.config.getApiBaseUrl(), parts, params);
-		Gson gson = new Gson();
-		Type collectionType = new TypeToken<List<Member>>(){}.getType();
-		List<Member> members = gson.fromJson(json, collectionType);
-		return members;
+		Type typeOfT = new TypeToken<List<Member>>(){}.getType();
+		return this.doGet(parts, params, typeOfT);
 	}
 	
 	/**
@@ -78,11 +72,8 @@ public class MemberService extends TrelloApiBase {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("fields", "all");
 		
-		String json = this.getRequest(this.config.getApiBaseUrl(), parts, params);
-		Gson gson = new Gson();
-		Type collectionType = new TypeToken<List<Member>>(){}.getType();
-		List<Member> members = gson.fromJson(json, collectionType);
-		return members;
+		Type typeOfT = new TypeToken<List<Member>>(){}.getType();
+		return this.doGet(parts, params, typeOfT);
 	}
 	
 	/**
@@ -101,11 +92,8 @@ public class MemberService extends TrelloApiBase {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("fields", "all");
 		
-		String json = this.getRequest(this.config.getApiBaseUrl(), parts, params);
-		Gson gson = new Gson();
-		Type collectionType = new TypeToken<List<Member>>(){}.getType();
-		List<Member> members = gson.fromJson(json, collectionType);
-		return members;
+		Type typeOfT = new TypeToken<List<Member>>(){}.getType();
+		return this.doGet(parts, params, typeOfT);
 	}
 
 }

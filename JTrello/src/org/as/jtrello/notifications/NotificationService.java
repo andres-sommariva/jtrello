@@ -8,7 +8,6 @@ import org.as.jtrello.Config;
 import org.as.jtrello.base.TrelloApiBase;
 import org.as.jtrello.base.TrelloApiBaseException;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class NotificationService extends TrelloApiBase {
@@ -30,10 +29,8 @@ public class NotificationService extends TrelloApiBase {
 		parts.add("notifications");
 		parts.add(id);
 		
-		String json = this.getRequest(parts, null);
-		Gson gson = new Gson();
-		Notification notification = gson.fromJson(json, Notification.class);
-		return notification;
+		Type typeOfT = new TypeToken<Notification>(){}.getType();
+		return this.doGet(parts, null, typeOfT);
 	}
 	
 	/**
@@ -47,11 +44,8 @@ public class NotificationService extends TrelloApiBase {
 		parts.add(key);
 		parts.add("notifications");
 		
-		String json = this.getRequest(this.config.getApiBaseUrl(), parts, null);
-		Gson gson = new Gson();
-		Type collectionType = new TypeToken<List<Notification>>(){}.getType();
-		List<Notification> notifications = gson.fromJson(json, collectionType);
-		return notifications;
+		Type typeOfT = new TypeToken<List<Notification>>(){}.getType();
+		return this.doGet(parts, null, typeOfT);
 	}
 
 }

@@ -8,7 +8,6 @@ import org.as.jtrello.Config;
 import org.as.jtrello.base.TrelloApiBase;
 import org.as.jtrello.base.TrelloApiBaseException;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class OrganizationService extends TrelloApiBase {
@@ -30,10 +29,8 @@ public class OrganizationService extends TrelloApiBase {
 		parts.add("organizations");
 		parts.add(key);
 		
-		String json = this.getRequest(this.config.getApiBaseUrl(), parts, null);
-		Gson gson = new Gson();
-		Organization organization = gson.fromJson(json, Organization.class);
-		return organization;
+		Type typeOfT = new TypeToken<Organization>(){}.getType();
+		return this.doGet(parts, null, typeOfT);
 	}
 	
 	/**
@@ -48,11 +45,8 @@ public class OrganizationService extends TrelloApiBase {
 		parts.add(key);
 		parts.add("organizations");
 		
-		String json = this.getRequest(this.config.getApiBaseUrl(), parts, null);
-		Gson gson = new Gson();
-		Type collectionType = new TypeToken<List<Organization>>(){}.getType();
-		List<Organization> organizations = gson.fromJson(json, collectionType);
-		return organizations;
+		Type typeOfT = new TypeToken<List<Organization>>(){}.getType();
+		return this.doGet(parts, null, typeOfT);
 	}
 
 }

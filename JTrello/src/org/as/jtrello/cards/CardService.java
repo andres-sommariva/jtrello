@@ -8,7 +8,6 @@ import org.as.jtrello.Config;
 import org.as.jtrello.base.TrelloApiBase;
 import org.as.jtrello.base.TrelloApiBaseException;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class CardService extends TrelloApiBase {
@@ -30,10 +29,8 @@ public class CardService extends TrelloApiBase {
 		parts.add("cards");
 		parts.add(id);
 		
-		String json = this.getRequest(parts, null);
-		Gson gson = new Gson();
-		Card card = gson.fromJson(json, Card.class);
-		return card;
+		Type typeOfT = new TypeToken<Card>(){}.getType();
+		return this.doGet(parts, null, typeOfT);
 	}
 	
 	/**
@@ -47,11 +44,8 @@ public class CardService extends TrelloApiBase {
 		parts.add(boardId);
 		parts.add("cards");
 		
-		String json = this.getRequest(this.config.getApiBaseUrl(), parts, null);
-		Gson gson = new Gson();
-		Type collectionType = new TypeToken<List<Card>>(){}.getType();
-		List<Card> cards = gson.fromJson(json, collectionType);
-		return cards;
+		Type typeOfT = new TypeToken<List<Card>>(){}.getType();
+		return this.doGet(parts, null, typeOfT);
 	}
 	
 	/**
@@ -65,11 +59,8 @@ public class CardService extends TrelloApiBase {
 		parts.add(key);
 		parts.add("cards");
 		
-		String json = this.getRequest(this.config.getApiBaseUrl(), parts, null);
-		Gson gson = new Gson();
-		Type collectionType = new TypeToken<List<Card>>(){}.getType();
-		List<Card> cards = gson.fromJson(json, collectionType);
-		return cards;
+		Type typeOfT = new TypeToken<List<Card>>(){}.getType();
+		return this.doGet(parts, null, typeOfT);
 	}
 
 }
