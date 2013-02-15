@@ -1,4 +1,4 @@
-package org.as.tests.jtrello;
+package org.as.jtrello.tests;
 
 public class TestValues {
 

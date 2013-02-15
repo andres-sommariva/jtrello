@@ -1,4 +1,4 @@
-package org.as.tests.jtrello.notifications;
+package org.as.jtrello.tests.notifications;
 
 import static org.junit.Assert.fail;
 
@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.as.jtrello.base.TrelloApiBaseException;
 import org.as.jtrello.notifications.Notification;
-import org.as.tests.jtrello.GenericServiceTest;
+import org.as.jtrello.tests.GenericServiceTest;
 import org.junit.Test;
 
 public class NotificationServiceTest extends GenericServiceTest {

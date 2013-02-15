@@ -1,4 +1,4 @@
-package org.as.tests.jtrello;
+package org.as.jtrello.tests;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

@@ -1,4 +1,4 @@
-package org.as.tests.jtrello.actions;
+package org.as.jtrello.tests.actions;
 
 import static org.junit.Assert.fail;
 
@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.as.jtrello.actions.Action;
-import org.as.tests.jtrello.GenericServiceTest;
+import org.as.jtrello.tests.GenericServiceTest;
 import org.junit.Test;
 
 public class ActionServiceTest extends GenericServiceTest {

@@ -1,4 +1,4 @@
-package org.as.tests.jtrello.checklists;
+package org.as.jtrello.tests.checklists;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.as.jtrello.checklists.Checklist;
-import org.as.tests.jtrello.GenericServiceTest;
+import org.as.jtrello.tests.GenericServiceTest;
 import org.junit.Test;
 
 public class ChecklistServiceTest extends GenericServiceTest {
