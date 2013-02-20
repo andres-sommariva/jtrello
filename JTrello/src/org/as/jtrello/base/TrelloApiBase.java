@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.as.jtrello.Config;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -38,12 +39,17 @@ public class TrelloApiBase {
 	 * @param params URL query string parameters.
 	 * @param typeOfT The type of the object to be returned. This is needed in order to tell Gson how to deserialize the JSON response.
 	 * @return Execute resource request (GET) and returns an object of typeOfT type.
-	 * @throws TrelloApiBaseException If http status code is not '200'.
+	 * @throws TrelloApiBaseException If a problem occurs during request or parsing.
 	 */
 	public <T> T doGet(List<String> parts, Map<String, String> params, Type typeOfT) throws TrelloApiBaseException {
 		String json = this.getRequest(parts, params);
 		Gson gson = new Gson();
-		T obj = gson.fromJson(json, typeOfT);
+		T obj;
+		try {
+			obj = gson.fromJson(json, typeOfT);
+		} catch (JsonSyntaxException e) {
+			throw new TrelloApiBaseException(e);
+		}
 		return obj;
 	}
 
@@ -68,7 +74,8 @@ public class TrelloApiBase {
 
 		String output = response.getEntity(String.class);
 
-		System.out.println("DEBUG output="+output);
+		// TODO Implement logging library
+		//System.out.println("DEBUG output="+output);
 
 		return output;
 	}
