@@ -47,5 +47,20 @@ public class ListService extends TrelloApiBase {
 		Type typeOfT = new TypeToken<List<TList>>(){}.getType();
 		return this.doGet(parts, null, typeOfT);
 	}
+	
+	/**
+	 * @param list New list to be created.
+	 * @return TList with updated information returned by Trello.
+	 * @throws TrelloApiBaseException
+	 */
+	public TList create(TList list) throws TrelloApiBaseException {
+		List<String> parts = new ArrayList<String>();
+		parts.add("lists");
+		
+		Type typeOfT = new TypeToken<TList>(){}.getType();
+		list = this.doPost(parts, list.toParam(), typeOfT);
+		
+		return list;
+	}
 
 }

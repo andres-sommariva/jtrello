@@ -63,4 +63,18 @@ public class BoardService extends TrelloApiBase {
 		return this.doGet(parts, null, typeOfT);
 	}
 
+	/**
+	 * @param board New board to be created.
+	 * @return Board with updated information returned by Trello.
+	 * @throws TrelloApiBaseException
+	 */
+	public Board create(Board board) throws TrelloApiBaseException {
+		List<String> parts = new ArrayList<String>();
+		parts.add("boards");
+		
+		Type typeOfT = new TypeToken<Board>(){}.getType();
+		board = this.doPost(parts, board.toParam(), typeOfT);
+		
+		return board;
+	}
 }

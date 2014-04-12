@@ -1,6 +1,8 @@
 package org.as.jtrello.checklists;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.as.jtrello.base.TrelloObject;
 
@@ -41,6 +43,13 @@ public class Checklist extends TrelloObject {
 			this.pos = pos;
 		}
 		
+		@Override
+		public Map<String, String> toParam() {
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("name", getName());
+			return params;
+		}
+		
 	}
 	private List<CheckItem> checkItems;
 	
@@ -67,6 +76,15 @@ public class Checklist extends TrelloObject {
 	}
 	public void setCheckItems(List<CheckItem> checkItems) {
 		this.checkItems = checkItems;
+	}
+	
+	@Override
+	public Map<String, String> toParam() {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("name", getName());
+		params.put("idBoard ", getIdBoard());
+		params.put("isCard", getIdCard());
+		return params;
 	}
 	
 }

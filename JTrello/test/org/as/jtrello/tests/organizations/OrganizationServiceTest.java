@@ -55,5 +55,21 @@ public class OrganizationServiceTest extends GenericServiceTest {
 			fail();
 		}
 	}
+	
+	@Test
+	public void testCreate() {
+		Organization organization = new Organization();
+		organization.setName("testOrganization");
+		organization.setDisplayName("Test Organization");
+		organization.setDesc("This organization is created for test purposes.");
+		try {
+			Organization newOrganization = OrganizationServiceTest.client.getOrganizations().create(organization);
+			System.out.println("DEBUG organization=" + organization.toString());
+			System.out.println("DEBUG newOrganization=" + newOrganization.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
 
 }

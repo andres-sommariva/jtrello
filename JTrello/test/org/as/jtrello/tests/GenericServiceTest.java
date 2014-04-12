@@ -20,7 +20,11 @@ public abstract class GenericServiceTest {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		GenericServiceTest.client = new JTrelloClient(props.getProperty("TRELLO_API_KEY"), props.getProperty("TRELLO_USER_TOKEN"));
+		if (props.getProperty("TRELLO_SECRET_KEY") != "") {
+			GenericServiceTest.client = new JTrelloClient(props.getProperty("TRELLO_API_KEY"), props.getProperty("TRELLO_SECRET_KEY"), props.getProperty("TRELLO_USER_TOKEN"));
+		} else {
+			GenericServiceTest.client = new JTrelloClient(props.getProperty("TRELLO_API_KEY"), props.getProperty("TRELLO_USER_TOKEN"));
+		}
 	}
 
 }

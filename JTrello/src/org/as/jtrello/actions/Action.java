@@ -1,5 +1,8 @@
 package org.as.jtrello.actions;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.as.jtrello.base.TrelloObject;
 import org.as.jtrello.boards.Board;
@@ -74,6 +77,12 @@ public class Action extends TrelloObject {
 	}
 	public void setData(Data data) {
 		this.data = data;
+	}
+	
+	@Override
+	public Map<String, String> toParam() {
+		Map<String, String> params = new HashMap<String, String>();
+		return params;
 	}
 	
 }

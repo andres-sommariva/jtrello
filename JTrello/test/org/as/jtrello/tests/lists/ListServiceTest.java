@@ -39,5 +39,20 @@ public class ListServiceTest extends GenericServiceTest {
 			fail();
 		}
 	}
+	
+	@Test
+	public void testCreate() {
+		TList list = new TList();
+		list.setName("TestList");
+		list.setIdBoard(props.getProperty("TRELLO_BOARD_TOWRITE"));
+		try {
+			TList newList = client.getLists().create(list);
+			System.out.println("DEBUG list=" + list.toString());
+			System.out.println("DEBUG newList=" + newList.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
 
 }

@@ -1,6 +1,8 @@
 package org.as.jtrello.organizations;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.as.jtrello.base.TrelloObject;
 
@@ -41,6 +43,15 @@ public class Organization extends TrelloObject {
 	}
 	public void setIdBoards(List<String> idBoards) {
 		this.idBoards = idBoards;
+	}
+	
+	@Override
+	public Map<String, String> toParam() {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("name", getName());
+		params.put("displayName", getDisplayName());
+		params.put("desc", getDesc());
+		return params;
 	}
 	
 }

@@ -2,6 +2,7 @@ package org.as.jtrello.tests.boards;
 
 import static org.junit.Assert.fail;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -61,6 +62,22 @@ public class BoardServiceTest extends GenericServiceTest {
 				board = iterator.next();
 				System.out.println("DEBUG board=" + board.toString());
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+	
+	@Test
+	public void testCreate() {
+		Board board = new Board();
+		board.setName("TestBoard"+System.currentTimeMillis());
+		board.setDesc("Test board created on: " + (new Date()).toString());
+		board.setIdOrganization(props.getProperty("TRELLO_ORGANIZATION_TOWRITE"));
+		try {
+			Board newBoard = client.getBoards().create(board);
+			System.out.println("DEBUG board=" + board.toString());
+			System.out.println("DEBUG newBoard=" + newBoard.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail();

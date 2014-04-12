@@ -79,4 +79,20 @@ public class CardServiceTest extends GenericServiceTest {
 		}
 	}
 
+	@Test
+	public void testCreate() {
+		Card card = new Card();
+		card.setName("TestCard");
+		card.setDesc("This card is created for test purposes.");
+		card.setIdList(props.getProperty("TRELLO_LIST_TOWRITE"));
+		try {
+			Card newCard = client.getCards().create(card);
+			System.out.println("DEBUG card=" + card.toString());
+			System.out.println("DEBUG newCard=" + newCard.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
+	
 }

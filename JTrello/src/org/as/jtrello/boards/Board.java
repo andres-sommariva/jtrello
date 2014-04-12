@@ -1,5 +1,8 @@
 package org.as.jtrello.boards;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.as.jtrello.base.TrelloObject;
 
 public class Board extends TrelloObject {
@@ -40,6 +43,15 @@ public class Board extends TrelloObject {
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	
+	@Override
+	public Map<String, String> toParam() {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("name", getName());
+		params.put("desc", getDesc());
+		params.put("idOrganization", getIdOrganization());
+		return params;
 	}
 	
 }

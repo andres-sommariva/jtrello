@@ -62,5 +62,20 @@ public class CardService extends TrelloApiBase {
 		Type typeOfT = new TypeToken<List<Card>>(){}.getType();
 		return this.doGet(parts, null, typeOfT);
 	}
+	
+	/**
+	 * @param card New card to be created.
+	 * @return Card with updated information returned by Trello.
+	 * @throws TrelloApiBaseException
+	 */
+	public Card create(Card card) throws TrelloApiBaseException {
+		List<String> parts = new ArrayList<String>();
+		parts.add("cards");
+		
+		Type typeOfT = new TypeToken<Card>(){}.getType();
+		card = this.doPost(parts, card.toParam(), typeOfT);
+		
+		return card;
+	}
 
 }

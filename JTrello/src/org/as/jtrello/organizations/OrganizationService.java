@@ -34,7 +34,6 @@ public class OrganizationService extends TrelloApiBase {
 	}
 	
 	/**
-	 * 
 	 * @param key Id or username. 'me' will respond as if you had supplied the username associated with the supplied token.
 	 * @return Gets an organization list by member.
 	 * @throws TrelloApiBaseException
@@ -47,6 +46,21 @@ public class OrganizationService extends TrelloApiBase {
 		
 		Type typeOfT = new TypeToken<List<Organization>>(){}.getType();
 		return this.doGet(parts, null, typeOfT);
+	}
+	
+	/**
+	 * @param organization New organization to be created.
+	 * @return Organization with updated information returned by Trello.
+	 * @throws TrelloApiBaseException
+	 */
+	public Organization create(Organization organization) throws TrelloApiBaseException {
+		List<String> parts = new ArrayList<String>();
+		parts.add("organizations");
+		
+		Type typeOfT = new TypeToken<Organization>(){}.getType();
+		organization = this.doPost(parts, organization.toParam(), typeOfT);
+		
+		return organization;
 	}
 
 }

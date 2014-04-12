@@ -17,8 +17,14 @@ public class NotificationServiceTest extends GenericServiceTest {
 	@Test
 	public void testGet() {
 		try {
-			Notification notification = client.getNotifications().get(props.getProperty("TRELLO_NOTIFICATION1"));
-			System.out.println("DEBUG notification=" + notification.toString());
+			List<Notification> notifications = client.getNotifications().getByUser(props.getProperty("TRELLO_MEMBER"));
+			if (notifications.size() > 0){
+				//Notification notification = client.getNotifications().get(props.getProperty("TRELLO_NOTIFICATION1"));
+				Notification notification = client.getNotifications().get(notifications.get(0).getId());
+				System.out.println("DEBUG notification=" + notification.toString());
+			} else {
+				fail("Need notifications to test this method.");
+			}
 		} catch (TrelloApiBaseException e) {
 			e.printStackTrace();
 			fail();

@@ -1,6 +1,8 @@
 package org.as.jtrello.members;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.as.jtrello.base.TrelloObject;
 
@@ -62,6 +64,13 @@ public class Member extends TrelloObject {
 	}
 	public void setIdOrganizations(List<String> idOrganizations) {
 		this.idOrganizations = idOrganizations;
+	}
+	
+	@Override
+	public Map<String, String> toParam() {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("username", getUsername());
+		return params;
 	}
 	
 }
