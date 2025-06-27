@@ -1,7 +1,8 @@
-== API implementation
+## API implementation
 The following list shows which methods are implemented in JTrello API wrapper and where.
 
  |Method|Where| 
+ |------|-----|
  |**Actions**|| 
  |GET /1/actions/[action_id]|ActionService.get| 
  |GET /1/actions/[action_id]/[field]|| 
