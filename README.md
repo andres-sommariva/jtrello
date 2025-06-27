@@ -69,4 +69,4 @@ Very low functionality, only query for: members, organizations, boards and cards
 
 # API implementation
 
-See which methods are implemented in JTrello API wrapper and where: [API implementation](/asommariva/jtrello/wiki/API implementation/).
+See which methods are implemented in JTrello API wrapper and where: [API implementation](/API.md).
